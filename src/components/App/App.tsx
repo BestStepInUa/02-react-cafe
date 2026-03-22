@@ -6,11 +6,7 @@ import VoteOptions from '../VoteOptions'
 import VoteStats from '../VoteStats'
 import Notification from '../Notification'
 
-const initialVotesState: Votes = {
-	good: 0,
-	neutral: 0,
-	bad: 0,
-}
+const initialVotesState: Votes = Object.fromEntries(VOTE_TYPES.map((type) => [type, 0])) as Votes
 
 export default function App() {
 	const [votes, setVotes] = useState<Votes>(initialVotesState)
