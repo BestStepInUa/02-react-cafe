@@ -1,5 +1,6 @@
 import { VOTE_TYPES, type Votes } from '@/types/votes'
 import css from './VoteStats.module.css'
+import makeVoteName from '@/utils'
 
 interface VoteStatsProps {
 	votes: Votes
@@ -10,7 +11,7 @@ interface VoteStatsProps {
 export default function VoteStats({ votes, totalVotes, positiveRate }: VoteStatsProps) {
 	const voteResults = VOTE_TYPES.map((vote) => (
 		<p key={vote} className={css.stat}>
-			{vote.charAt(0).toUpperCase() + vote.slice(1)}: <strong>{votes[vote]}</strong>
+			{makeVoteName(vote)}: <strong>{votes[vote]}</strong>
 		</p>
 	))
 

@@ -1,5 +1,6 @@
 import { VOTE_TYPES, type VoteType } from '@/types/votes'
 import css from './VoteOptions.module.css'
+import makeVoteName from '@/utils'
 
 interface VoteOptionsProps {
 	onVote: (type: VoteType) => void
@@ -10,7 +11,7 @@ interface VoteOptionsProps {
 export default function VoteOptions({ onVote, onReset, canReset }: VoteOptionsProps) {
 	const voteBtns = VOTE_TYPES.map((option) => (
 		<button key={option} className={css.button} onClick={() => onVote(option)}>
-			{option.charAt(0).toUpperCase() + option.slice(1)}
+			{makeVoteName(option)}
 		</button>
 	))
 
