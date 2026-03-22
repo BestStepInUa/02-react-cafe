@@ -22,15 +22,13 @@ export default function App() {
 	const totalVotes = Object.values(votes).reduce((sum, value) => sum + value, 0)
 	const positiveRate = totalVotes ? Math.round((votes.good / totalVotes) * 100) : 0
 
+	const hasVotes = totalVotes > 0
+
 	return (
 		<div className={css.app}>
 			<CafeInfo />
-			<VoteOptions
-				onVote={handleVote}
-				onReset={resetVotes}
-				canReset={totalVotes > 0 ? true : false}
-			/>
-			{totalVotes > 0 ? (
+			<VoteOptions onVote={handleVote} onReset={resetVotes} canReset={hasVotes ? true : false} />
+			{hasVotes ? (
 				<VoteStats votes={votes} totalVotes={totalVotes} positiveRate={positiveRate} />
 			) : (
 				<Notification />
