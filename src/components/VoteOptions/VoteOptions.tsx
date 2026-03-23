@@ -1,4 +1,5 @@
-import { VOTE_TYPES, type VoteType } from '@/types/votes'
+import type { VoteType } from '@/types/votes'
+import voteOptions from '@/data/voteOptions.json'
 import css from './VoteOptions.module.css'
 import makeVoteName from '@/utils'
 
@@ -9,9 +10,9 @@ interface VoteOptionsProps {
 }
 
 export default function VoteOptions({ onVote, onReset, canReset }: VoteOptionsProps) {
-	const voteBtns = VOTE_TYPES.map((option) => (
-		<button key={option} className={css.button} onClick={() => onVote(option)}>
-			{makeVoteName(option)}
+	const voteBtns = voteOptions.map((vote) => (
+		<button key={vote} className={css.button} onClick={() => onVote(vote as VoteType)}>
+			{makeVoteName(vote)}
 		</button>
 	))
 
@@ -26,4 +27,3 @@ export default function VoteOptions({ onVote, onReset, canReset }: VoteOptionsPr
 		</div>
 	)
 }
-

@@ -1,6 +1,7 @@
-import { VOTE_TYPES, type Votes } from '@/types/votes'
+import voteOptions from '@/data/voteOptions.json'
 import css from './VoteStats.module.css'
 import makeVoteName from '@/utils'
+import type { Votes, VoteType } from '@/types/votes'
 
 interface VoteStatsProps {
 	votes: Votes
@@ -9,9 +10,9 @@ interface VoteStatsProps {
 }
 
 export default function VoteStats({ votes, totalVotes, positiveRate }: VoteStatsProps) {
-	const voteResults = VOTE_TYPES.map((vote) => (
+	const voteResults = voteOptions.map((vote) => (
 		<p key={vote} className={css.stat}>
-			{makeVoteName(vote)}: <strong>{votes[vote]}</strong>
+			{makeVoteName(vote)}: <strong>{votes[vote as VoteType]}</strong>
 		</p>
 	))
 

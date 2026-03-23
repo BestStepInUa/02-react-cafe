@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import CafeInfo from '@/components/CafeInfo'
 import css from './App.module.css'
-import { VOTE_TYPES, type Votes, type VoteType } from '@/types/votes'
+
 import VoteOptions from '../VoteOptions'
 import VoteStats from '../VoteStats'
 import Notification from '../Notification'
+import type { Votes, VoteType } from '@/types/votes'
 
-const initialVotesState: Votes = Object.fromEntries(VOTE_TYPES.map((type) => [type, 0])) as Votes
+const initialVotesState = {
+	good: 0,
+	neutral: 0,
+	bad: 0,
+}
 
 export default function App() {
 	const [votes, setVotes] = useState<Votes>(initialVotesState)
